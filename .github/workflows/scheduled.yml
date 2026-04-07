@@ -20,13 +20,14 @@ jobs:
       - name: "param preparation"
         id: param
         run: |
-          if [[ github.event_name == "workflow_dispatch" ]]
+          if [[ ${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "branch=${{ inputs.branch }}" >> $GITHUB_ENV
-          elif [[github.event_name == "schedule"]]
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             echo "branch=dev" >> $GITHUB_ENV
           else
             echo "No Valid Event"
             exit 0
+          fi
   job2:
     needs: job1
     env:
