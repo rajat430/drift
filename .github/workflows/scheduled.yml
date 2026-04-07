@@ -20,3 +20,4 @@ jobs:
       - name: task1
         run: |
           echo ${{env.BRANCH}}
+          echo ${{github.event_name}}
