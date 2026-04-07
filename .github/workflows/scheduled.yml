@@ -21,9 +21,9 @@ jobs:
         id: param
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "branch=${{ inputs.branch }}" >> $GITHUB_ENV
+            echo "branch=${{ inputs.branch }}" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
-            echo "branch=dev" >> $GITHUB_ENV
+            echo "branch=dev" >> $GITHUB_OUTPUT
           else
             echo "No Valid Event"
             exit 0
