@@ -4,4 +4,5 @@ do
   git add .
   git commit -m "Add $i.txt"
   git push origin main
+  git pull origin main
 done
