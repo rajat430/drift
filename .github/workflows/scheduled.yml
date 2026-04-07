@@ -1,0 +1,20 @@
+name: scheduled
+on:
+  schedule:
+    - cron: '* * * * *'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "run it from branch"
+        type: choice
+        default: 'main'
+        options:
+          - 'main'
+          - 'dev'
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: task1
+        run: |
+          echo ${{inputs.branch}}
