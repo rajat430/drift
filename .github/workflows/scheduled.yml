@@ -12,26 +12,9 @@ on:
           - 'main'
           - 'dev'
 jobs:
-  job1:
-    runs-on: ubuntu-latest
-    outputs:
-      branch: ${{steps.param.outputs.branch }}
-    steps:
-      - name: "param preparation"
-        id: param
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "branch=${{ inputs.branch }}" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
-            echo "branch=dev" >> $GITHUB_OUTPUT
-          else
-            echo "No Valid Event"
-            exit 0
-          fi
   job2:
-    needs: job1
     env:
-      BRANCH: ${{ needs.job1.outputs.branch}}
+      BRANCH: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || 'dev' }}
     runs-on: ubuntu-latest
     steps:
       - name: task1
