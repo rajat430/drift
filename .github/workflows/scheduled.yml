@@ -13,8 +13,10 @@ on:
           - 'dev'
 jobs:
   job1:
+    env:
+      BRANCH: ${{inputs.branch}}
     runs-on: ubuntu-latest
     steps:
       - name: task1
         run: |
-          echo ${{inputs.branch}}
+          echo ${{env.BRANCH}}
