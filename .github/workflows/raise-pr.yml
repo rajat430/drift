@@ -15,14 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Create Pull Request
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh pr create \
-          --base dev \
-          --head main \
-          --title "Auto PR from main to dev" \
-          --body "This PR was created automatically by GitHub Actions."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base dev \
+            --head main \
+            --title "Auto PR from main to dev" \
+            --body "This PR was created automatically by GitHub Actions."
       
           
           
