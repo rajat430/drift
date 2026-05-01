@@ -1,0 +1,23 @@
+name: scheduled
+on:
+  schedule:
+    - cron: '*/1 * * * *'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "run it from branch"
+        type: choice
+        default: 'main'
+        options:
+          - 'main'
+          - 'dev'
+jobs:
+  job2:
+    env:
+      BRANCH: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || 'dev' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: task1
+        run: |
+          echo ${{env.BRANCH}}
+          echo ${{github.event_name}}
